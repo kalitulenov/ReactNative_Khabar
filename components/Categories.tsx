@@ -18,6 +18,8 @@ type Props = {
   onCategoryChanged: (category: string) => void; // Callback при изменении выбранной категории
 };
 
+console.log("CATEGORIES-> ");
+
 // Основной компонент Catgories (Categories с опечаткой)
 const Catgories = ({ onCategoryChanged }: Props) => {
   // Ref для управления горизонтальным ScrollView (для программного скролла)
@@ -75,11 +77,12 @@ const Catgories = ({ onCategoryChanged }: Props) => {
     // Вызываем callback родительского компонента с slug выбранной категории
     onCategoryChanged(newsCategoryList[index].slug);
   };
+  console.log("<-CATEGORIES");
 
   return (
     <View>
       {/* Заголовок раздела категорий */}
-      <Text style={styles.title}>Trending right now</Text>
+      <Text style={styles.title}>Новости дня</Text>
 
       {/* Горизонтальный ScrollView для списка категорий */}
       <ScrollView
@@ -128,11 +131,12 @@ export default Catgories;
 const styles = StyleSheet.create({
   title: {
     fontSize: 18,
-    fontWeight: "600", // Полужирный
+    fontWeight: "500", // Полужирный
     color: Colors.black,
-    marginBottom: 10, // Отступ снизу перед списком категорий
+    marginBottom: 1, // Отступ снизу перед списком категорий
     marginLeft: 20, // Отступ слева для выравнивания
     marginTop: -20, // Отрицательный отступ сверху (возможно для перекрытия других элементов)
+    textAlign: "center",
   },
   itemsWrapper: {
     gap: 10, // Расстояние между элементами категорий

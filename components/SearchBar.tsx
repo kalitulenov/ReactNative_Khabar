@@ -6,6 +6,8 @@ import { Ionicons } from "@expo/vector-icons"; // Иконки для UI
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
+console.log("SEARCHBAR-> ");
+
 // Определение типа пропсов компонента
 type Props = {
   withHorizontalPadding: boolean; // Флаг: добавлять ли горизонтальные отступы
@@ -49,6 +51,7 @@ const SearchBar = ({ withHorizontalPadding, setSearchQuery }: Props) => {
     </View>
   );
 };
+console.log("<-SEARCHBAR");
 
 export default SearchBar;
 
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E4E4E4", // Светло-серый фон поля поиска
     // Примечание: лучше использовать Colors.lightGrey для консистентности
     paddingHorizontal: 10, // Горизонтальные внутренние отступы
-    paddingVertical: 10, // Вертикальные внутренние отступы
+    paddingVertical: 1, // Вертикальные внутренние отступы
     borderRadius: 10, // Закругленные углы
     flexDirection: "row", // Горизонтальное расположение: иконка слева, поле справа
     gap: 5, // Расстояние между иконкой и полем ввода (React Native 0.71+)

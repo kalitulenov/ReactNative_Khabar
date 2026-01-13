@@ -18,7 +18,7 @@ import {
 import { SharedValue } from "react-native-reanimated"; // Новый API анимаций (не используется)
 
 // Отладочный вывод в консоль (может замедлять производительность)
-console.log("SliderItem:");
+console.log("SLIDERIEM-> ");
 
 // Определение пропсов компонента
 type Props = {
@@ -86,6 +86,7 @@ const SliderItem = ({ slideItem, index, scrollX }: Props) => {
     </Link>
   );
 };
+console.log("<-SLIDERIEM");
 
 export default SliderItem;
 

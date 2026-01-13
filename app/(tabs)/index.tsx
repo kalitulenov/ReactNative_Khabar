@@ -1,15 +1,15 @@
 // Импорт необходимых компонентов и модулей
-import BreakingNews from "@/components/BreakingNews"; // Компонент для отображения главных новостей
-import Catgories from "@/components/Categories"; // Компонент категорий новостей (опечатка в названии - Categories)
 import Header from "@/components/Header"; // Пользовательский компонент заголовка
-import Loading from "@/components/Loading"; // Компонент индикатора загрузки
-import NewsList from "@/components/NewsList"; // Компонент списка новостей
-import SearchBar from "@/components/SearchBar"; // Компонент поиска
 import { NewsDataType } from "@/types"; // Типы TypeScript для данных новостей
 import axios from "axios"; // HTTP-клиент для запросов к API
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context"; // Для учета безопасных зон экрана
+
+// import BreakingNews from "@/components/BreakingNews"; // Компонент для отображения главных новостей
+import Catgories from "@/components/Categories"; // Компонент категорий новостей (опечатка в названии - Categories)
+import NewsList from "@/components/NewsList"; // Компонент списка новостей
+import SearchBar from "@/components/SearchBar"; // Компонент поиска
 
 // Определение типа пропсов компонента (в данном случае пустой объект)
 type Props = {};
@@ -94,22 +94,23 @@ const Page = (props: Props) => {
     // Основной контейнер с учетом безопасной зоны
     <View style={[styles.container, { paddingTop: safeTop }]}>
       {/* Компонент заголовка */}
+      {/* <Text>Header</Text> */}
       <Header />
-
       {/* Компонент поиска (передан пустой обработчик) */}
+      {/* <Text>SearchBar</Text> */}
       <SearchBar withHorizontalPadding={true} setSearchQuery={() => {}} />
-
       {/* Условный рендеринг: показываем индикатор загрузки или главные новости */}
-      {isLoading ? (
+      {/* {isLoading ? (
         <Loading size={"large"} /> // Компонент загрузки
       ) : (
+        // <Text>BreakingNews</Text>
         <BreakingNews newsList={breakingNews} /> // Компонент главных новостей
-      )}
-
+      )} */}
       {/* Компонент категорий с обработчиком изменения категории */}
+      {/* <Text>Catgories</Text> */}
       <Catgories onCategoryChanged={onCatChanged} />
-
       {/* Компонент списка новостей (отображается всегда) */}
+      {/* <Text>NewsList</Text> */}
       <NewsList newsList={news} />
     </View>
   );

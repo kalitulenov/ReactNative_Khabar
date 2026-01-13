@@ -1,12 +1,13 @@
 // Компонент заголовка приложения с пользовательской информацией и уведомлениями
 // Обычно располагается в верхней части экрана
 
-import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
-import { Ionicons } from "@expo/vector-icons"; // Библиотека иконок для React Native
 import { Colors } from "@/constants/Colors"; // Цветовая палитра приложения
+import { Ionicons } from "@expo/vector-icons"; // Библиотека иконок для React Native
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {}; // Пустые пропсы (компонент не принимает параметров)
+console.log("HEADER-> ");
 
 const Header = (props: Props) => {
   return (
@@ -33,8 +34,8 @@ const Header = (props: Props) => {
           <Text style={styles.welcomeTxt}>Welcome</Text>
           {/* Имя пользователя (захардкожено) */}
           <Text style={styles.userName}>Jhon Doe</Text>
-          // Примечание: "Jhon Doe" содержит опечатку (правильно "John Doe") //
-          В реальном приложении имя должно приходить из данных пользователя
+          {/* // Примечание: "Jhon Doe" содержит опечатку (правильно "John Doe") //
+          В реальном приложении имя должно приходить из данных пользователя */}
         </View>
       </View>
 
@@ -50,12 +51,12 @@ const Header = (props: Props) => {
           size={24} // Размер иконки
           color={Colors.black} // Цвет иконки
         />
-        // Примечание: есть также filled версия "notifications" для активных
-        уведомлений
+        {/* Примечание: есть также filled версия "notifications" для активных уведомлений */}
       </TouchableOpacity>
     </View>
   );
 };
+console.log("HEADER-> ");
 
 export default Header;
 
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
     flexDirection: "row", // Горизонтальное расположение дочерних элементов
     justifyContent: "space-between", // Распределение: пользователь слева, иконка справа
     alignItems: "center", // Вертикальное выравнивание по центру
-    marginBottom: 5, // Небольшой отступ снизу для разделения с контентом
+    marginBottom: 1, // Небольшой отступ снизу для разделения с контентом
+    marginTop: -15, // Небольшой отступ снизу для разделения с контентом
     // Примечание: не задан paddingVertical, высота определяется содержимым
   },
   userImg: {

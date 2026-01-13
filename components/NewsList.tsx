@@ -15,6 +15,8 @@ import {
 } from "react-native";
 import Loading from "./Loading"; // Компонент индикатора загрузки
 
+console.log("NEWSLIST-> ");
+
 // Пропсы для основного компонента NewsList
 type Props = {
   newsList: NewsDataType[]; // Массив новостей для отображения
@@ -45,6 +47,7 @@ const NewsList = ({ newsList }: Props) => {
     </ScrollView>
   );
 };
+console.log("<-NEWSLIST");
 
 export default NewsList;
 

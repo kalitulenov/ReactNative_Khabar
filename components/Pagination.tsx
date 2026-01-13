@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 type Props = {};
+console.log("PAGINATION-> ");
 
 const Pagination = (props: Props) => {
   return (
@@ -10,6 +11,7 @@ const Pagination = (props: Props) => {
     </View>
   );
 };
+console.log("<-PAGINATION");
 
 export default Pagination;
 

@@ -13,6 +13,8 @@ import Animated, {
 } from "react-native-reanimated"; // Библиотека для производительных анимаций
 import Pagination from "./Pagination"; // Компонент индикатора пагинации (точки слайдера)
 
+console.log("BREAKINGNEWS-> ");
+
 // Определение пропсов компонента
 type Props = {
   newsList: Array<NewsDataType>; // Массив новостей для отображения в слайдере
@@ -45,6 +47,7 @@ const BreakingNews = ({ newsList }: Props) => {
       // setPaginationIndex(index);
     },
   });
+  console.log("<-BREAKINGNEWS");
 
   return (
     <View style={styles.container}>

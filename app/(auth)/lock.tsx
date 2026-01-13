@@ -100,7 +100,7 @@ const lock = () => {
 
   /**
    * onNumberPress: обработчик нажатия на цифровую кнопку
-   * @param number - нажатая цифра (0-9)
+   * param number - нажатая цифра (0-9)
    * Добавляет цифру в массив кода, если длина меньше 6
    */
   const onNumberPress = (number: number) => {
