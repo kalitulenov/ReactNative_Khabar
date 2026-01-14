@@ -20,6 +20,11 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
   // Вычисляем ширину одной кнопки на основе общей ширины TabBar и количества вкладок
   const buttonWidth = dimensions.width / state.routes.length;
+  console.log("state=", state);
+
+  console.log("dimensions.width=", dimensions.width);
+  console.log("state.routes.length=", state.routes.length);
+  console.log("buttonWidth=", buttonWidth);
 
   // Обработчик измерения размеров TabBar
   const onTabbarLayout = (e: LayoutChangeEvent) => {
@@ -124,7 +129,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             onLongPress={onLongPress}
             isFocused={isFocused}
             routeName={route.name}
-            label={label}
+            label={String(label)}
           />
         );
       })}
@@ -136,8 +141,8 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 const styles = StyleSheet.create({
   tabbar: {
     flexDirection: "row", // Горизонтальное расположение кнопок
-    paddingTop: 16, // Верхний внутренний отступ
-    paddingBottom: 40, // Нижний внутренний отступ (больше для "человеческого" большого пальца)
+    paddingTop: 5, // Верхний внутренний отступ
+    paddingBottom: 5, // Нижний внутренний отступ (больше для "человеческого" большого пальца)
     backgroundColor: Colors.white, // Белый фон TabBar
     // Примечание: отсутствуют важные свойства:
     // - borderTopWidth/borderTopColor (для разделителя)

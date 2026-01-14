@@ -4,7 +4,7 @@
 import { Colors } from "@/constants/Colors"; // Цветовая палитра
 import { icon } from "@/constants/Icons"; // Объект с иконками для разных маршрутов
 import React, { useEffect } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, PressableProps, StyleSheet } from "react-native";
 import Animated, {
   interpolate, // Функция для интерполяции значений
   useAnimatedStyle, // Хук для создания анимированных стилей
@@ -12,23 +12,39 @@ import Animated, {
   withSpring, // Функция для пружинной анимации
 } from "react-native-reanimated"; // Библиотека для производительных анимаций
 
+type Props = {
+  onPress: PressableProps["onPress"];
+  onLongPress?: PressableProps["onLongPress"];
+  isFocused: boolean;
+  routeName: string;
+  label: string;
+};
+
 // Определение пропсов компонента
+// const TabBarButton = ({
+//   onPress, // Обработчик нажатия
+//   onLongPress, // Обработчик долгого нажатия
+//   isFocused, // Флаг: активна ли текущая вкладка
+//   routeName, // Имя маршрута (используется для выбора иконки)
+//   label, // Текстовая метка вкладки
+// }: {
+//   onPress: PressableProps["onPress"]; // Примечание: лучше использовать конкретный тип () => void
+//   onLongPress: PressableProps["onLongPress"]; // Примечание: лучше использовать конкретный тип () => void
+//   isFocused: boolean; // Булево значение активности
+//   routeName: string; // Строка с именем маршрута (например: "Home", "Search")
+//   label: string; // Отображаемый текст
+// }) => {
 const TabBarButton = ({
   onPress, // Обработчик нажатия
   onLongPress, // Обработчик долгого нажатия
   isFocused, // Флаг: активна ли текущая вкладка
   routeName, // Имя маршрута (используется для выбора иконки)
   label, // Текстовая метка вкладки
-}: {
-  onPress: Function; // Примечание: лучше использовать конкретный тип () => void
-  onLongPress: Function; // Примечание: лучше использовать конкретный тип () => void
-  isFocused: boolean; // Булево значение активности
-  routeName: string; // Строка с именем маршрута (например: "Home", "Search")
-  label: string; // Отображаемый текст
-}) => {
+}: Props) => {
   // SharedValue для управления анимацией прозрачности
   const opacity = useSharedValue(0);
   // Используется для создания обратной анимации: текст исчезает при активации
+  console.log("routeName=", routeName);
 
   // Эффект для обновления анимации при изменении isFocused
   useEffect(() => {
@@ -70,7 +86,7 @@ const TabBarButton = ({
           ...
         }
       */}
-      {icon[routeName]({
+      {icon[routeName as keyof typeof icon]({
         color: isFocused ? Colors.tabIconSelected : Colors.tabIconDefault,
         focused: isFocused,
         // Иконка получает цвет и фокус для изменения внешнего вида
@@ -104,8 +120,8 @@ const styles = StyleSheet.create({
     flex: 1, // Каждая кнопка занимает равную долю ширины TabBar
     justifyContent: "center", // Вертикальное центрирование содержимого
     alignItems: "center", // Горизонтальное центрирование содержимого
-    gap: 5, // Расстояние между иконкой и текстом (React Native 0.71+)
+    gap: 1, // Расстояние между иконкой и текстом (React Native 0.71+)
     // Для старых версий: marginTop: 5 у Text
-    paddingVertical: 8, // Вертикальные внутренние отступы для увеличения hit area
+    paddingVertical: 5, // Вертикальные внутренние отступы для увеличения hit area
   },
 });
