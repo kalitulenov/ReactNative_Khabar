@@ -1,4 +1,5 @@
 // Импорт необходимых модулей
+import { UserInactivityProvider } from "@/context/UserInactivity";
 import { useFonts } from "expo-font"; // Хук для загрузки пользовательских шрифтов
 import { Stack } from "expo-router"; // Компонент для навигации в Expo Router
 import * as SplashScreen from "expo-splash-screen"; // Модуль для управления экраном загрузки
@@ -38,25 +39,35 @@ export default function RootLayout() {
 
   // Возвращаем навигационный стек после успешной загрузки шрифтов
   return (
-    // Stack - контейнер для навигации на основе стека
-    <Stack>
-      {/* 
+    <UserInactivityProvider>
+      // Stack - контейнер для навигации на основе стека
+      <Stack>
+        {/* 
         Экран с именем "index" - начальный/основной экран приложения
         headerShown: false - скрываем заголовок на этом экране
       */}
-      <Stack.Screen name="index" options={{ headerShown: false }} />
+        {/* <Stack.Screen name="index" options={{ headerShown: false }} /> */}
+        {/* <Stack.Screen name="./(tabs)" options={{ headerShown: false }} /> */}
 
-      {/* 
+        {/* 
         Экран с именем "(tabs)" - экран с табами (нижней панелью навигации)
         headerShown: false - скрываем заголовок, так как навигация через табы
       */}
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 
-      {/* 
+        <Stack.Screen
+          // Полноэкранный режим без заголовка
+          name="(auth)/lock"
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+        {/* 
         Примечание: остальные экраны (например, /news/[id]) 
         будут автоматически добавлены в стек при навигации
         без явного объявления здесь
       */}
-    </Stack>
+      </Stack>
+    </UserInactivityProvider>
   );
 }
