@@ -1,5 +1,4 @@
 // Импорт необходимых компонентов и модулей
-import Header from "@/components/Header"; // Пользовательский компонент заголовка
 import { NewsDataType } from "@/types"; // Типы TypeScript для данных новостей
 import axios from "axios"; // HTTP-клиент для запросов к API
 import React, { useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"; // Для у
 
 // import BreakingNews from "@/components/BreakingNews"; // Компонент для отображения главных новостей
 import Catgories from "@/components/Categories"; // Компонент категорий новостей (опечатка в названии - Categories)
+import Header from "@/components/Header";
 import NewsList from "@/components/NewsList"; // Компонент списка новостей
 import SearchBar from "@/components/SearchBar"; // Компонент поиска
 
@@ -99,13 +99,6 @@ const Page = (props: Props) => {
       {/* Компонент поиска (передан пустой обработчик) */}
       {/* <Text>SearchBar</Text> */}
       <SearchBar withHorizontalPadding={true} setSearchQuery={() => {}} />
-      {/* Условный рендеринг: показываем индикатор загрузки или главные новости */}
-      {/* {isLoading ? (
-        <Loading size={"large"} /> // Компонент загрузки
-      ) : (
-        // <Text>BreakingNews</Text>
-        <BreakingNews newsList={breakingNews} /> // Компонент главных новостей
-      )} */}
       {/* Компонент категорий с обработчиком изменения категории */}
       {/* <Text>Catgories</Text> */}
       <Catgories onCategoryChanged={onCatChanged} />

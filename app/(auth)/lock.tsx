@@ -133,7 +133,8 @@ const lock = () => {
       // Запрос биометрической аутентификации
       const { success } = await LocalAuthentication.authenticateAsync();
       if (success) {
-        router.replace("/"); // Успешная навигация
+        // router.replace("/"); // Успешная навигация
+        router.replace("/(tabs)");
       } else {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); // Вибрация ошибки
       }

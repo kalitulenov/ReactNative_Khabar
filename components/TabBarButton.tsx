@@ -12,6 +12,8 @@ import Animated, {
   withSpring, // Функция для пружинной анимации
 } from "react-native-reanimated"; // Библиотека для производительных анимаций
 
+console.log("TABBARBUTTON->");
+
 type Props = {
   onPress: PressableProps["onPress"];
   onLongPress?: PressableProps["onLongPress"];
@@ -20,20 +22,6 @@ type Props = {
   label: string;
 };
 
-// Определение пропсов компонента
-// const TabBarButton = ({
-//   onPress, // Обработчик нажатия
-//   onLongPress, // Обработчик долгого нажатия
-//   isFocused, // Флаг: активна ли текущая вкладка
-//   routeName, // Имя маршрута (используется для выбора иконки)
-//   label, // Текстовая метка вкладки
-// }: {
-//   onPress: PressableProps["onPress"]; // Примечание: лучше использовать конкретный тип () => void
-//   onLongPress: PressableProps["onLongPress"]; // Примечание: лучше использовать конкретный тип () => void
-//   isFocused: boolean; // Булево значение активности
-//   routeName: string; // Строка с именем маршрута (например: "Home", "Search")
-//   label: string; // Отображаемый текст
-// }) => {
 const TabBarButton = ({
   onPress, // Обработчик нажатия
   onLongPress, // Обработчик долгого нажатия

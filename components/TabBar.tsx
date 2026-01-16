@@ -14,13 +14,15 @@ import Animated, {
 
 // Основной компонент кастомного TabBar
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+  console.log("TABBAR->");
+
   // Состояние для хранения размеров TabBar (измеряются динамически)
   const [dimensions, setDimensions] = useState({ height: 20, width: 100 });
   // Начальные значения (20x100) будут заменены после измерения
 
   // Вычисляем ширину одной кнопки на основе общей ширины TabBar и количества вкладок
   const buttonWidth = dimensions.width / state.routes.length;
-  console.log("state=", state);
+  console.log("state1=", state);
 
   console.log("dimensions.width=", dimensions.width);
   console.log("state.routes.length=", state.routes.length);

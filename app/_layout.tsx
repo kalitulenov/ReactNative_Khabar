@@ -46,19 +46,12 @@ export default function RootLayout() {
         Экран с именем "index" - начальный/основной экран приложения
         headerShown: false - скрываем заголовок на этом экране
       */}
-        {/* <Stack.Screen name="index" options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen name="./(tabs)" options={{ headerShown: false }} /> */}
+        <Stack.Screen name="index" options={{ headerShown: false }} />
 
         {/* 
         Экран с именем "(tabs)" - экран с табами (нижней панелью навигации)
         headerShown: false - скрываем заголовок, так как навигация через табы
       */}
-
-        <Stack.Screen
-          // Полноэкранный режим без заголовка
-          name="(auth)/lock"
-          options={{ headerShown: false }}
-        />
 
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
 

@@ -1,6 +1,7 @@
 // Импорт необходимых компонентов React Native и сторонних библиотек
 import Loading from "@/components/Loading"; // Компонент индикатора загрузки
 import { NewsItem } from "@/components/NewsList"; // Компонент отображения отдельной новости
+import { NewsDataType } from "@/types";
 import AsyncStorage from "@react-native-async-storage/async-storage"; // Для хранения данных локально на устройстве
 import { useIsFocused } from "@react-navigation/native"; // Хук для определения, находится ли экран в фокусе
 import axios from "axios"; // HTTP-клиент для выполнения API запросов
@@ -14,7 +15,7 @@ type Props = {};
 // Основной компонент страницы закладок
 const Page = (props: Props) => {
   // Состояние для хранения списка новостей из закладок
-  const [bookmarkNews, setBookmarkNews] = useState([]);
+  const [bookmarkNews, setBookmarkNews] = useState<NewsDataType[]>([]);
 
   // Состояние для управления отображением индикатора загрузки
   const [isLoading, setIsLoading] = useState(true);
@@ -80,7 +81,7 @@ const Page = (props: Props) => {
           // FlatList для эффективного отображения длинных списков
           <FlatList
             data={bookmarkNews} // Массив данных для отображения
-            keyExtractor={(_, index) => "list_item${index}"} // Генерация ключей для элементов списка
+            keyExtractor={(_, index) => `list_item${index}`} // Генерация ключей для элементов списка
             // Примечание: строка использует кавычки вместо бэктиков - вероятно ошибка шаблонной строки
             showsVerticalScrollIndicator={false} // Скрываем вертикальный индикатор прокрутки
             renderItem={({ index, item }) => {
@@ -88,6 +89,8 @@ const Page = (props: Props) => {
               return (
                 // Link для навигации на детальную страницу новости
                 <Link href={`/news/${item.article_id}`} asChild key={index}>
+                  {/* <Link href={`./news/${item.article_id}`} asChild key={index}> */}
+
                   {/* TouchableOpacity делает элемент кликабельным с анимацией нажатия */}
                   <TouchableOpacity>
                     {/* Компонент NewsItem для отображения отдельной новости */}

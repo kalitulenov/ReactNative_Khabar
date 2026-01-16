@@ -18,10 +18,10 @@ type Props = {
   onCategoryChanged: (category: string) => void; // Callback при изменении выбранной категории
 };
 
-console.log("CATEGORIES-> ");
-
 // Основной компонент Catgories (Categories с опечаткой)
 const Catgories = ({ onCategoryChanged }: Props) => {
+  console.log("CATEGORIES-> ");
+
   // Ref для управления горизонтальным ScrollView (для программного скролла)
   const scrollRef = useRef<ScrollView>(null);
 
@@ -58,22 +58,6 @@ const Catgories = ({ onCategoryChanged }: Props) => {
       });
     });
 
-    const handleSelectCategory2 = (index: number) => {
-      const selected = itemRef.current[index];
-
-      setActiveIndex(index);
-
-      selected?.measure((x, y, width, height, pageX, pageY) => {
-        const screenWidth = Dimensions.get("window").width;
-
-        const scrollToX = pageX - screenWidth / 2 + width / 2;
-
-        scrollRef.current?.scrollTo({
-          x: Math.max(0, scrollToX),
-          animated: true,
-        });
-      });
-    };
     // Вызываем callback родительского компонента с slug выбранной категории
     onCategoryChanged(newsCategoryList[index].slug);
   };
