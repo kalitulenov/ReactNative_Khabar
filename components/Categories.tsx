@@ -18,8 +18,7 @@ type Props = {
   onCategoryChanged: (category: string) => void; // Callback при изменении выбранной категории
 };
 
-// Основной компонент Catgories (Categories с опечаткой)
-const Catgories = ({ onCategoryChanged }: Props) => {
+const Categories = ({ onCategoryChanged }: Props) => {
   console.log("CATEGORIES-> ");
 
   // Ref для управления горизонтальным ScrollView (для программного скролла)
@@ -109,7 +108,7 @@ const Catgories = ({ onCategoryChanged }: Props) => {
   );
 };
 
-export default Catgories;
+export default Categories;
 
 // Стили компонента
 const styles = StyleSheet.create({

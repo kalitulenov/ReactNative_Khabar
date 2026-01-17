@@ -78,7 +78,7 @@ export default Page;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     // justifyContent: "center",
     // alignItems: "center",
   },
@@ -92,13 +92,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 16,
-    marginTop: 12,
-    marginBottom: 20,
+    marginTop: 5,
+    marginBottom: 5,
   },
   searchBtn: {
     backgroundColor: Colors.tint,
     alignItems: "center",
-    padding: 14,
+    padding: 5,
     borderRadius: 10,
     marginVertical: 10,
   },
