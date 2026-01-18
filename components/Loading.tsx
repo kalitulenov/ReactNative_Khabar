@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 
-console.log("LOADING-> ");
+// console.log("LOADING-> ");
 
 // Определение типа пропсов компонента Loading
 // Используется сложный тип, который включает все пропсы ActivityIndicator
@@ -38,7 +38,7 @@ const Loading = (
     </View>
   );
 };
-console.log("<-LOADING");
+// console.log("<-LOADING");
 
 export default Loading;
 

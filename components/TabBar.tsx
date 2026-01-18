@@ -22,7 +22,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
   // Вычисляем ширину одной кнопки на основе общей ширины TabBar и количества вкладок
   const buttonWidth = dimensions.width / state.routes.length;
-  console.log("state1=", state);
+  // console.log("state1=", state);
 
   console.log("dimensions.width=", dimensions.width);
   console.log("state.routes.length=", state.routes.length);

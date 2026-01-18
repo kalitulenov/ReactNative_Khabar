@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import Loading from "./Loading"; // Компонент индикатора загрузки
 
-console.log("NEWSLIST-> ");
+// console.log("NEWSLIST-> ");
 
 // Пропсы для основного компонента NewsList
 type Props = {
@@ -47,7 +47,7 @@ const NewsList = ({ newsList }: Props) => {
     </ScrollView>
   );
 };
-console.log("<-NEWSLIST");
+// console.log("<-NEWSLIST");
 
 export default NewsList;
 

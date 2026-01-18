@@ -7,7 +7,7 @@ import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {}; // Пустые пропсы (компонент не принимает параметров)
-console.log("HEADER-> ");
+// console.log("HEADER-> ");
 
 const Header = (props: Props) => {
   return (
@@ -46,7 +46,7 @@ const Header = (props: Props) => {
     </View>
   );
 };
-console.log("HEADER-> ");
+// console.log("HEADER-> ");
 
 export default Header;
 

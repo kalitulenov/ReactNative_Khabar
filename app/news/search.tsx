@@ -59,6 +59,7 @@ const Page = (props: Props) => {
       // Примечание: API ключ жестко закодирован (небезопасно)
       const URL = `https://newsdata.io/api/1/latest?apikey=pub_d04c7afa300b4847835de372229e59de&size=10${categoryString}${countryString}${queryString}`;
       // size=10 - ограничение на 10 новостей в ответе
+      console.log("search URL = ", URL); // Логирование ошибок
 
       // Выполнение GET-запроса к API
       const response = await axios.get(URL);
@@ -99,7 +100,8 @@ const Page = (props: Props) => {
           // FlatList для эффективного отображения списка новостей
           <FlatList
             data={news} // Массив данных для отображения
-            keyExtractor={(_, index) => "list_item${index}"} // Генерация уникальных ключей
+            keyExtractor={(item) => item.article_id} // CHATGPT
+            // keyExtractor={(_, index) => "list_item${index}"} // Генерация уникальных ключей
             // ВНИМАНИЕ: используется кавычки вместо бэктиков - ошибка шаблонной строки
             showsVerticalScrollIndicator={false} // Скрываем вертикальный индикатор прокрутки
             renderItem={({ index, item }) => {

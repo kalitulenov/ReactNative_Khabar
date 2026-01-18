@@ -81,7 +81,8 @@ const Page = (props: Props) => {
           // FlatList для эффективного отображения длинных списков
           <FlatList
             data={bookmarkNews} // Массив данных для отображения
-            keyExtractor={(_, index) => `list_item${index}`} // Генерация ключей для элементов списка
+            keyExtractor={(item) => item.article_id} // CHATGPT
+            //   keyExtractor={(_, index) => `list_item${index}`} // Генерация ключей для элементов списка
             // Примечание: строка использует кавычки вместо бэктиков - вероятно ошибка шаблонной строки
             showsVerticalScrollIndicator={false} // Скрываем вертикальный индикатор прокрутки
             renderItem={({ index, item }) => {

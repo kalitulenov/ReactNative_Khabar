@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   greeting: {
     fontSize: 24,
     fontWeight: "bold",
-    marginTop: 50,
+    marginTop: 20,
     alignSelf: "center",
   },
   codeView: {

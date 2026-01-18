@@ -6,13 +6,12 @@ import { Ionicons } from "@expo/vector-icons"; // Иконки для UI
 import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
-console.log("SEARCHBAR-> ");
+// console.log("SEARCHBAR-> ");
 
 // Определение типа пропсов компонента
 type Props = {
   withHorizontalPadding: boolean; // Флаг: добавлять ли горизонтальные отступы
-  setSearchQuery: Function; // Callback функция для обновления поискового запроса
-  // Примечание: тип Function слишком общий, лучше указать конкретную сигнатуру
+  setSearchQuery: (query: string) => void; // Callback функция для обновления поискового запроса
 };
 
 // Дублирование строки (возможно, ошибка копирования)
@@ -51,7 +50,7 @@ const SearchBar = ({ withHorizontalPadding, setSearchQuery }: Props) => {
     </View>
   );
 };
-console.log("<-SEARCHBAR");
+// console.log("<-SEARCHBAR");
 
 export default SearchBar;
 

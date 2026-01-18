@@ -85,8 +85,8 @@ export const UserInactivityProvider: React.FC<UserInactivityProviderProps> = ({
     // Получение текущего состояния аутентификации из хранилища
     const isAuthenticating = useAuthStore.getState().isAuthenticating;
 
-    console.log("appState--->", appState.current, nextAppState);
-    console.log("isAuthenticating in appState", isAuthenticating);
+    // console.log("appState--->", appState.current, nextAppState);
+    // console.log("isAuthenticating in appState", isAuthenticating);
 
     /**
      * ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ОВЕРЛЕЙ/ЭКРАН БЛОКИРОВКИ
@@ -102,7 +102,7 @@ export const UserInactivityProvider: React.FC<UserInactivityProviderProps> = ({
       } else {
         // Возвращаемся назад, если оверлей открыт
         if (router.canGoBack()) {
-          console.log("canGoBack:", appState.current, nextAppState);
+          // console.log("canGoBack:", appState.current, nextAppState);
           router.back();
         }
       }
@@ -141,7 +141,7 @@ export const UserInactivityProvider: React.FC<UserInactivityProviderProps> = ({
     try {
       await AsyncStorage.setItem(STORAGE_KEY, Date.now().toString());
     } catch (error) {
-      console.error("Error saving start time:", error);
+      // console.error("Error saving start time:", error);
     }
   };
 
@@ -157,7 +157,7 @@ export const UserInactivityProvider: React.FC<UserInactivityProviderProps> = ({
       const value = await AsyncStorage.getItem(STORAGE_KEY);
       return value ? parseInt(value, 10) : null;
     } catch (error) {
-      console.error("Error reading start time:", error);
+      // console.error("Error reading start time:", error);
       return null;
     }
   };

@@ -39,17 +39,22 @@ const Page = (props: Props) => {
   }, []); // Пустой массив зависимостей - выполняется один раз при монтировании
 
   useEffect(() => {
-    if (searchQuery.length < 2) return;
+    if (searchQuery.length < 4) return;
     setNews([]); // Очистка текущих новостей перед загрузкой новых
     queryString = `&q=${searchQuery}`;
+    console.log("useEffect =Category: ", category); // Логирование выбранной категории
+    console.log("useEffect =searchQuery: ", searchQuery); // Логирование выбранной категории
+
     getNews(category, queryString);
   }, [searchQuery]);
 
   // Обработчик изменения категории
   const onCatChanged = (category: string) => {
-    console.log("Category: ", category); // Логирование выбранной категории
+    console.log("onCatChanged =Category: ", category); // Логирование выбранной категории
+    console.log("onCatChanged =searchQuery: ", searchQuery); // Логирование выбранной категории
     setNews([]); // Очистка текущих новостей перед загрузкой новых
     setCategory(category);
+    queryString = `&q=${searchQuery}`;
     getNews(category, queryString); // Загрузка новостей для выбранной категории
   };
 
@@ -63,12 +68,15 @@ const Page = (props: Props) => {
         categoryString = `&category=${category}`;
       }
 
-      // Создание URL для запроса с учетом категории
+      // Создание URL для запроса с учетом категории EXPO_PUBLIC_API_KEY
       // const URL = `https://newsdata.io/api/1/latest?apikey=pub_d04c7afa300b4847835de372229e59de&size=10${categoryString}`;
       const URL = `https://newsdata.io/api/1/latest?apikey=pub_d04c7afa300b4847835de372229e59de&size=10${categoryString}${queryString}`;
-      // size=10 - ограничение на 10 записей для обычных новостей
+
+      https: console.log("URL = ", URL); // Логирование ошибок
 
       const response = await axios.get(URL);
+
+      // console.log("response.data: ", response.data);
 
       // Проверка на наличие данных в ответе
       if (response && response.data) {

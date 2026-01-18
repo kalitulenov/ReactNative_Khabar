@@ -19,7 +19,7 @@ type Props = {
 };
 
 const Categories = ({ onCategoryChanged }: Props) => {
-  console.log("CATEGORIES-> ");
+  // console.log("CATEGORIES-> ");
 
   // Ref для управления горизонтальным ScrollView (для программного скролла)
   const scrollRef = useRef<ScrollView>(null);
@@ -60,7 +60,7 @@ const Categories = ({ onCategoryChanged }: Props) => {
     // Вызываем callback родительского компонента с slug выбранной категории
     onCategoryChanged(newsCategoryList[index].slug);
   };
-  console.log("<-CATEGORIES");
+  // console.log("<-CATEGORIES");
 
   return (
     <View>
