@@ -17,7 +17,7 @@ import {
 const Loading = (
   props: React.JSX.IntrinsicAttributes & // Базовые атрибуты JSX
     React.JSX.IntrinsicClassAttributes<ActivityIndicator> & // Атрибуты класса ActivityIndicator
-    Readonly<ActivityIndicatorProps> // Пропсы только для чтения ActivityIndicator
+    Readonly<ActivityIndicatorProps>, // Пропсы только для чтения ActivityIndicator
 ) => {
   return (
     // Контейнер, который центрирует индикатор загрузки на экране

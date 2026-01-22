@@ -14,12 +14,12 @@ const TabLayout = () => {
           title: "ДОМ",
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="discover"
         options={{
           title: "ПОИСК",
         }}
-      />
+      /> */}
       <Tabs.Screen
         name="saved"
         options={{

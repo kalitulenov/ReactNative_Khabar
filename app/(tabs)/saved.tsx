@@ -29,37 +29,79 @@ const Page = (props: Props) => {
   }, [isFocused]); // Зависимость от isFocused - загрузка происходит при каждом фокусировании на экране
 
   // Функция для получения и загрузки новостей из закладок
+  // const fetchBookmark = async () => {
+  //   // Получаем строку с ID новостей из локального хранилища
+  //   await AsyncStorage.getItem("bookmark").then(async (token) => {
+  //     // Парсим строку JSON. Если token null, используем пустой массив (рекомендация ChatGPT)
+  //     const res = token ? JSON.parse(token) : [];
+
+  //     setIsLoading(true); // Начинаем загрузку - показываем индикатор
+
+  //     if (res) {
+  //       // console.log("Bookmark", res);
+
+  //       // Преобразуем массив ID новостей в строку, разделенную запятыми для API запроса
+  //       let query_string = res.join(",");
+  //       console.log("query_string", query_string);
+
+  //       // Делаем запрос к API новостей, передавая все ID закладок
+  //       const response = await axios.get(
+  //         `https://newsdata.io/api/1/latest?apikey=${process.env.EXPO_PUBLIC_API_KEY}&id=${query_string}`,
+  //         // API ключ встроен в URL (небезопасно для production)
+  //         // Параметр id= принимает строку с ID через запятую
+  //       );
+  //       console.log("response.status = ", response.status); // Логирование ошибок
+
+  //       const news = response.data.results; // Извлекаем массив новостей из ответа
+  //       setBookmarkNews(news); // Сохраняем новости в состоянии
+  //       setIsLoading(false); // Завершаем загрузку - скрываем индикатор
+  //     } else {
+  //       // Если нет закладок, очищаем список и скрываем индикатор
+  //       setBookmarkNews([]);
+  //       setIsLoading(false);
+  //     }
+  //   });
+  // };
+
   const fetchBookmark = async () => {
-    // Получаем строку с ID новостей из локального хранилища
-    await AsyncStorage.getItem("bookmark").then(async (token) => {
-      // Парсим строку JSON. Если token null, используем пустой массив (рекомендация ChatGPT)
-      const res = token ? JSON.parse(token) : [];
+    try {
+      setIsLoading(true);
 
-      setIsLoading(true); // Начинаем загрузку - показываем индикатор
+      const token = await AsyncStorage.getItem("bookmark");
+      const res: string[] = token ? JSON.parse(token) : [];
 
-      if (res) {
-        console.log("Bookmark", res);
-
-        // Преобразуем массив ID новостей в строку, разделенную запятыми для API запроса
-        let query_string = res.join(",");
-        console.log("query_string", query_string);
-
-        // Делаем запрос к API новостей, передавая все ID закладок
-        const response = await axios.get(
-          `https://newsdata.io/api/1/latest?apikey=pub_d04c7afa300b4847835de372229e59de&id=${query_string}`
-          // API ключ встроен в URL (небезопасно для production)
-          // Параметр id= принимает строку с ID через запятую
-        );
-
-        const news = response.data.results; // Извлекаем массив новостей из ответа
-        setBookmarkNews(news); // Сохраняем новости в состоянии
-        setIsLoading(false); // Завершаем загрузку - скрываем индикатор
-      } else {
-        // Если нет закладок, очищаем список и скрываем индикатор
+      // ✅ НЕТ ЗАКЛАДОК — ЭТО НОРМА
+      if (res.length === 0) {
         setBookmarkNews([]);
-        setIsLoading(false);
+        return;
       }
-    });
+
+      const query_string = res.join(",");
+
+      const response = await axios.get(`https://newsdata.io/api/1/latest`, {
+        params: {
+          apikey: process.env.EXPO_PUBLIC_API_KEY,
+          id: query_string,
+        },
+        // ✅ говорим axios: 422 — это НЕ ошибка
+        validateStatus: (status) => status === 200 || status === 422,
+      });
+      //  console.log("response.status = ", response.status); // Логирование ошибок
+
+      // ✅ СЕРВЕР НИЧЕГО НЕ НАШЁЛ
+      if (response.status === 422) {
+        setBookmarkNews([]);
+        return;
+      }
+
+      setBookmarkNews(response.data.results ?? []);
+    } catch (error) {
+      console.error("Ошибка загрузки закладок:", error);
+      setBookmarkNews([]);
+    } finally {
+      // ✅ ВСЕГДА выключаем загрузку
+      setIsLoading(false);
+    }
   };
 
   // Рендер компонента

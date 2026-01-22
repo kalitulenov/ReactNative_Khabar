@@ -78,14 +78,15 @@ const lock = () => {
     if (code.length === 6) {
       if (code.join("") === "123456") {
         // Сравнение с демо-кодом
-        router.replace("/"); // Успешная навигация на главный экран
+        // router.replace("/"); // Успешная навигация на главный экран
+        router.back();
         setCode([]); // Очистка кода
       } else {
         // Анимация ошибки: последовательность смещений
         offset.value = withSequence(
           withTiming(-OFFSET, { duration: TIME / 2 }),
           withRepeat(withTiming(OFFSET, { duration: TIME / 2 }), 4, true), // 4 колебания
-          withTiming(OFFSET, { duration: TIME / 2 })
+          withTiming(OFFSET, { duration: TIME / 2 }),
         );
         // Вибрация ошибки
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);

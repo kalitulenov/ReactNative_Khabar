@@ -12,7 +12,7 @@ import Animated, {
   withSpring, // Функция для пружинной анимации
 } from "react-native-reanimated"; // Библиотека для производительных анимаций
 
-console.log("TABBARBUTTON->");
+// console.log("TABBARBUTTON->");
 
 type Props = {
   onPress: PressableProps["onPress"];
@@ -32,7 +32,7 @@ const TabBarButton = ({
   // SharedValue для управления анимацией прозрачности
   const opacity = useSharedValue(0);
   // Используется для создания обратной анимации: текст исчезает при активации
-  console.log("routeName=", routeName);
+  // console.log("routeName=", routeName);
 
   // Эффект для обновления анимации при изменении isFocused
   useEffect(() => {
@@ -40,7 +40,7 @@ const TabBarButton = ({
     opacity.value = withSpring(
       // Обработка разных типов isFocused (для совместимости)
       typeof isFocused === "boolean" ? (isFocused ? 1 : 0) : isFocused,
-      { duration: 50 } // Очень быстрая анимация (50ms)
+      { duration: 50 }, // Очень быстрая анимация (50ms)
       // Примечание: withSpring обычно не использует duration, лучше withTiming
     );
   }, [opacity, isFocused]); // Зависимости: обновляем при изменении isFocused

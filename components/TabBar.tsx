@@ -14,7 +14,7 @@ import Animated, {
 
 // Основной компонент кастомного TabBar
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
-  console.log("TABBAR->");
+  // console.log("TABBAR->");
 
   // Состояние для хранения размеров TabBar (измеряются динамически)
   const [dimensions, setDimensions] = useState({ height: 20, width: 100 });
@@ -24,9 +24,9 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const buttonWidth = dimensions.width / state.routes.length;
   // console.log("state1=", state);
 
-  console.log("dimensions.width=", dimensions.width);
-  console.log("state.routes.length=", state.routes.length);
-  console.log("buttonWidth=", buttonWidth);
+  // console.log("dimensions.width=", dimensions.width);
+  // console.log("state.routes.length=", state.routes.length);
+  // console.log("buttonWidth=", buttonWidth);
 
   // Обработчик измерения размеров TabBar
   const onTabbarLayout = (e: LayoutChangeEvent) => {
@@ -87,8 +87,8 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
-            ? options.title
-            : route.name;
+              ? options.title
+              : route.name;
 
         // Проверяем, является ли текущая вкладка активной
         const isFocused = state.index === index;

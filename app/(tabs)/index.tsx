@@ -42,16 +42,16 @@ const Page = (props: Props) => {
     if (searchQuery.length < 4) return;
     setNews([]); // Очистка текущих новостей перед загрузкой новых
     queryString = `&q=${searchQuery}`;
-    console.log("useEffect =Category: ", category); // Логирование выбранной категории
-    console.log("useEffect =searchQuery: ", searchQuery); // Логирование выбранной категории
+    // console.log("useEffect =Category: ", category); // Логирование выбранной категории
+    // console.log("useEffect =searchQuery: ", searchQuery); // Логирование выбранной категории
 
     getNews(category, queryString);
   }, [searchQuery]);
 
   // Обработчик изменения категории
   const onCatChanged = (category: string) => {
-    console.log("onCatChanged =Category: ", category); // Логирование выбранной категории
-    console.log("onCatChanged =searchQuery: ", searchQuery); // Логирование выбранной категории
+    // console.log("onCatChanged =Category: ", category); // Логирование выбранной категории
+    // console.log("onCatChanged =searchQuery: ", searchQuery); // Логирование выбранной категории
     setNews([]); // Очистка текущих новостей перед загрузкой новых
     setCategory(category);
     queryString = `&q=${searchQuery}`;
@@ -59,32 +59,67 @@ const Page = (props: Props) => {
   };
 
   // Функция для загрузки обычных новостей
-  const getNews = async (category: string = "", searchQuery: string = "") => {
+  const getNews = async (category: string = "", queryString: string = "") => {
     try {
       let categoryString = ""; // Строка параметра категории для URL
 
-      // Если категория указана, добавляем её в параметры запроса
       if (category.length !== 0) {
+        // Если категория указана, добавляем её в параметры запроса
         categoryString = `&category=${category}`;
       }
 
-      // Создание URL для запроса с учетом категории EXPO_PUBLIC_API_KEY
-      // const URL = `https://newsdata.io/api/1/latest?apikey=pub_d04c7afa300b4847835de372229e59de&size=10${categoryString}`;
-      const URL = `https://newsdata.io/api/1/latest?apikey=pub_d04c7afa300b4847835de372229e59de&size=10${categoryString}${queryString}`;
+      if (queryString.length < 4) {
+        // Если категория указана, добавляем её в параметры запроса
+        queryString = "";
+      }
+      console.log("queryString = ", queryString); // Логирование ошибок
 
-      https: console.log("URL = ", URL); // Логирование ошибок
+      // Создание URL для запроса с учетом категории ${process.env.EXPO_PUBLIC_API_KEY}
+      const URL = `https://newsdata.io/api/1/latest?apikey=${process.env.EXPO_PUBLIC_API_KEY}&size=10${categoryString}${queryString}`;
+      console.log("URL = ", URL); // Логирование ошибок
 
+      // const response = await axios.get(URL, {
+      //   validateStatus: (status) => status === 200 || status === 422,
+      // });
       const response = await axios.get(URL);
 
-      // console.log("response.data: ", response.data);
+      // const response = await axios.get(`https://newsdata.io/api/1/latest`, {
+      //   params: {
+      //     apikey: process.env.EXPO_PUBLIC_API_KEY,
+      //     id: categoryString,
+      //     queryString,
+      //   },
+      //   // ✅ говорим axios: 422 — это НЕ ошибка
+      //   validateStatus: (status) => status === 200 || status === 422,
+      // });
+
+      console.log("response.data: ", response.data);
+      console.log("response.status1 = ", response.status); // Логирование ошибок
+
+      // ✅ СЕРВЕР НИЧЕГО НЕ НАШЁЛ
+      if (response.status === 422) {
+        console.log("Ошибка: СЕРВЕР НИЧЕГО НЕ НАШЁЛ"); // Логирование ошибок
+        return;
+      }
+      console.log("response.data.results = ", response.data.results); // Логирование ошибок
+
+      setNews(response.data.results ?? []);
+      console.log("News = ", news); // Логирование ошибок
 
       // Проверка на наличие данных в ответе
+      if (news.length === 0) {
+        return;
+      }
+
       if (response && response.data) {
         setNews(response.data.results); // Сохранение новостей в состояние
         setIsLoading(false); // Отключение индикатора загрузки
+      } else {
+        return;
       }
     } catch (error: any) {
-      console.log("Error message: ", error.message); // Логирование ошибок
+      console.log("Ошибка: ", error.message); // Логирование ошибок
+      setNews([]);
     }
   };
 

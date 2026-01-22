@@ -1,6 +1,7 @@
 // Импорт необходимых компонентов React Native и библиотек
 import { useRouter } from "expo-router"; // Хук для навигации в Expo Router
 import { StatusBar } from "expo-status-bar"; // Компонент для управления статус-баром
+// import registerNNPushToken from "native-notify";
 import React, { useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 
@@ -11,6 +12,10 @@ useEffect(() => {
     router.replace("/(tabs)");
   }, 5000);
 }, []);
+
+// useEffect(() => {
+//   registerNNPushToken(33133, "jPhEQlOtbaFfrayItrJjly");
+// }, []);
 
 // Компонент приветственного/стартового экрана приложения
 const Page = () => {

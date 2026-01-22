@@ -16,6 +16,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Toast from "react-native-toast-message";
 
 type Props = {};
 
@@ -60,7 +61,7 @@ const NewsDetails = (props: Props) => {
         setIsLoading(false); // Выключение индикатора загрузки
       }
     } catch (error: any) {
-      console.log("Error message: ", error.message); // Логирование ошибок
+      console.log("Ошибка: ", error.message); // Логирование ошибок
     }
   };
 
@@ -79,7 +80,12 @@ const NewsDetails = (props: Props) => {
           // Если новости нет в закладках, добавляем её
           res.push(newsId);
           AsyncStorage.setItem("bookmark", JSON.stringify(res));
-          alert("News Saved"); // Уведомление пользователя
+          // alert("Новость сохранен!"); // Уведомление пользователя
+          Toast.show({
+            type: "success",
+            text1: "Новость сохранена",
+            text2: "Вы можете посмотреть её в закладках",
+          });
         } else {
           // Этот блок кода, вероятно, содержит ошибку логики:
           // Если новость уже есть в закладках, создаем новый массив только с этой новостью
@@ -87,7 +93,12 @@ const NewsDetails = (props: Props) => {
           let bookmark = [];
           bookmark.push(newsId);
           AsyncStorage.setItem("bookmark", JSON.stringify(bookmark));
-          alert("News Saved!");
+          // alert("Новость сохранен!!");
+          Toast.show({
+            type: "success",
+            text1: "Новость сохранена",
+            text2: "Вы можете посмотреть её в закладках",
+          });
         }
       }
     });
@@ -104,7 +115,12 @@ const NewsDetails = (props: Props) => {
     });
     // Сохраняем обновленный массив закладок
     await AsyncStorage.setItem("bookmark", JSON.stringify(bookmark));
-    alert("News unSaved!"); // Уведомление пользователя
+    // alert("Новость отменен!"); // Уведомление пользователя
+    Toast.show({
+      type: "success",
+      text1: "Новость отменен!",
+      text2: "Вы можете посмотреть её в закладках",
+    });
   };
 
   // Функция проверки, добавлена ли текущая новость в закладки
